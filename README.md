@@ -9,7 +9,7 @@
  - ID: st124090
 
 ## Files Structure
- - "A2_prediction.ipynb" contain codes for training the model in model_training folder.
+ - "A3_prediction.ipynb" contain codes for training the model in model_training folder.
  - "Car.csv" is the dataset used for this assignment.
  - This repo include the source_code for the web application, Dockerfiles and docker-compose.yaml for containerization of the application and CICD config file for connnecting Github and the mlflow server.
 
