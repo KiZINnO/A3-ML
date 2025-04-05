@@ -15,5 +15,5 @@
 
 ## How to run
  - Run the docker-compose-dev.yaml file to run locally.
- - Then, the model for assignment3 can be accessed on http://localhost:9001
- - You can also directly go to https://st124090.ml.brain.cs.ait.ac.th
+ - Then, the model for assignment3 can be accessed on http://localhost:8888
+ - You can also directly go to https://st124090.ml.brain.cs.ait.ac.th whcih is running on mlflow server.
