@@ -112,4 +112,4 @@ def predict_price(n_clicks, year, mileage, max_power):
     return prediction
 
 if __name__ == '__main__':
-    app.run_server(host = '0.0.0.0', port='8888', debug=True)
+    app.run_server(host = '0.0.0.0', port=8888)
