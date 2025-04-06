@@ -107,7 +107,7 @@ jobs:
           key: ${{ secrets.MLBRAIN_SSH_KEY }}
           proxy_host: ${{secrets.BAZOOKA_HOST}}
           proxy_username: ${{ secrets.BAZOOKA_USER }}
-          proxy_key: ${{ secrets.BAZOOKA_SSH__KEY }}
+          proxy_key: ${{ secrets.BAZOOKA_SSH_KEY }}
           script: |
             docker pull kpzik/a3_price_prediction
             docker compose -f docker-compose-prod.yaml down --remove-orphans
