@@ -35,7 +35,7 @@ app.layout = html.Div(
             html.Div([
                 html.Label("Year", style={'fontSize': '16px', 'color': '#555'}),
                 dcc.Input(id='year-input', type='number', placeholder='Enter year', value=year_default,
-                          style={'width': '70%', 'padding': '10px', 'margin': '5px 0', 
+                          style={'width': '80%', 'padding': '10px', 'margin': '5px 0', 
                                  'borderRadius': '5px', 'border': '1px solid #ccc'})
             ], style={'marginBottom': '20px'}),
             
