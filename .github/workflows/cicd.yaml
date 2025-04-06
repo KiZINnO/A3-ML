@@ -94,4 +94,4 @@ jobs:
       - name: Deploy to Server via SSH
         run: |
           # Using the SSH config, 'mlbrain' will route via bazooka automatically.
-          ssh mlbrain -p ${{ secrets.MLBRAIN_PORT }} "cd /path/to/your/project && docker-compose -f docker-compose-prod.yaml pull && docker-compose -f docker-compose-prod.yaml up -d"
+          ssh mlbrain -p ${{ secrets.MLBRAIN_PORT }} "docker-compose -f docker-compose-prod.yaml pull && docker-compose -f docker-compose-prod.yaml up -d"
