@@ -87,10 +87,10 @@ jobs:
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.MLBRAIN_HOST}}
-          username: ${{ secrets.MLBRAIN_USERNAME}}
+          username: ${{ secrets.MLBRAIN_USER}}
           key: ${{ secrets.MLBRAIN_SSH_KEY }}
           proxy_host: ${{secrets.BAZOOKA_HOST}}
-          proxy_username: ${{ secrets.BAZOOKA_USERNAME }}
+          proxy_username: ${{ secrets.BAZOOKA_USER }}
           proxy_key: ${{ secrets.BAZOOKA_SSH__KEY }}
           script: |
             docker pull kpzik/a3_price_prediction
