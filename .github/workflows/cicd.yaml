@@ -44,27 +44,10 @@ jobs:
 
     - name: Push Image to DockerHub
       run: docker push kpzik/a3_price_prediction
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      # - name: SSH Remote Commands
-      #   uses: appleboy/ssh-action@v1.1.0
-      #   with:
-      #     host: ${{vars.HOST}}
-      #     username: ${{ secrets.USERNAME}}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     proxy_host: ${{vars.PROXY_HOST}}
-      #     proxy_username: ${{ secrets.USERNAME }}
-      #     proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       docker pull inisha5563/car_price_prediction:a3
-      #       docker compose -f st125563/docker-compose.yml down --remove-orphans
-      #       docker compose -f st125563/docker-compose.yml up -d
-      #     debug: true
-
-
       - name: Set up SSH keys and config
         run: |
           mkdir -p ~/.ssh
@@ -94,3 +77,22 @@ jobs:
         run: |
           # Using the SSH config, 'mlbrain' will route via bazooka automatically.
           ssh mlbrain -p ${{ secrets.MLBRAIN_PORT }} "docker-compose -f docker-compose-prod.yaml pull && docker-compose -f docker-compose-prod.yaml up -d"
+
+
+
+
+
+      # - name: SSH Remote Commands
+      #   uses: appleboy/ssh-action@v1.1.0
+      #   with:
+      #     host: ${{vars.HOST}}
+      #     username: ${{ secrets.USERNAME}}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     proxy_host: ${{vars.PROXY_HOST}}
+      #     proxy_username: ${{ secrets.USERNAME }}
+      #     proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     script: |
+      #       docker pull inisha5563/car_price_prediction:a3
+      #       docker compose -f st125563/docker-compose.yml down --remove-orphans
+      #       docker compose -f st125563/docker-compose.yml up -d
+      #     debug: true
