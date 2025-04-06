@@ -99,17 +99,17 @@ jobs:
 
 
 
-      - name: SSH Remote Commands
-        uses: appleboy/ssh-action@v1.1.0
-        with:
-          host: ${{ secrets.MLBRAIN_HOST}}
-          username: ${{ secrets.MLBRAIN_USER}}
-          key: ${{ secrets.MLBRAIN_SSH_KEY }}
-          proxy_host: ${{secrets.BAZOOKA_HOST}}
-          proxy_username: ${{ secrets.BAZOOKA_USER }}
-          proxy_key: ${{ secrets.BAZOOKA_SSH_KEY }}
-          script: |
-            docker pull kpzik/a3_price_prediction
-            docker compose -f docker-compose-prod.yaml down --remove-orphans
-            docker compose -f docker-compose-prod.yaml up -d
-          debug: true
+      # - name: SSH Remote Commands
+      #   uses: appleboy/ssh-action@v1.1.0
+      #   with:
+      #     host: ${{ secrets.MLBRAIN_HOST}}
+      #     username: ${{ secrets.MLBRAIN_USER}}
+      #     key: ${{ secrets.MLBRAIN_SSH_KEY }}
+      #     proxy_host: ${{secrets.BAZOOKA_HOST}}
+      #     proxy_username: ${{ secrets.BAZOOKA_USER }}
+      #     proxy_key: ${{ secrets.BAZOOKA_SSH_KEY }}
+      #     script: |
+      #       docker pull kpzik/a3_price_prediction
+      #       docker compose -f docker-compose-prod.yaml down --remove-orphans
+      #       docker compose -f docker-compose-prod.yaml up -d
+      #     debug: true
