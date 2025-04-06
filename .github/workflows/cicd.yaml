@@ -46,7 +46,6 @@ jobs:
       run: docker push kpzik/a3_price_prediction
 
   deploy:
-    if: ${{ github.event.test.conclusion == 'success' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
