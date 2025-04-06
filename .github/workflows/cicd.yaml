@@ -77,17 +77,17 @@ jobs:
 
           # Create SSH config with both bazooka and mlbrain settings.
           echo "Host bazooka
-    HostName ${{ secrets.BAZOOKA_HOST }}
-    Port ${{ secrets.BAZOOKA_PORT }}
-    User ${{ secrets.BAZOOKA_USER }}
-    IdentityFile ~/.ssh/bazooka_key
-    IdentityOnly yes" > ~/.ssh/config
+          HostName ${{ secrets.BAZOOKA_HOST }}
+          Port ${{ secrets.BAZOOKA_PORT }}
+          User ${{ secrets.BAZOOKA_USER }}
+          IdentityFile ~/.ssh/bazooka_key
+          IdentityOnly yes" > ~/.ssh/config
 
           echo "Host mlbrain
-    HostName ${{ secrets.MLBRAIN_HOST }}
-    User ${{ secrets.MLBRAIN_USER }}
-    IdentityFile ~/.ssh/mlbrain_key
-    ProxyJump bazooka" >> ~/.ssh/config
+          HostName ${{ secrets.MLBRAIN_HOST }}
+          User ${{ secrets.MLBRAIN_USER }}
+          IdentityFile ~/.ssh/mlbrain_key
+          ProxyJump bazooka" >> ~/.ssh/config
 
           chmod 600 ~/.ssh/config
 
