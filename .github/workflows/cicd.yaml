@@ -44,6 +44,7 @@ jobs:
 
     - name: Push Image to DockerHub
       run: docker push kpzik/a3_price_prediction
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -63,7 +64,7 @@ jobs:
           Port ${{ secrets.BAZOOKA_PORT }}
           User ${{ secrets.BAZOOKA_USER }}
           IdentityFile ~/.ssh/bazooka_key
-          IdentityOnly yes" > ~/.ssh/config
+          # IdentityOnly yes" > ~/.ssh/config
 
           echo "Host mlbrain
           HostName ${{ secrets.MLBRAIN_HOST }}
