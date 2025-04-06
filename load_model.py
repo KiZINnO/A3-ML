@@ -4,7 +4,6 @@ import os
 
 filename = './model_training/model/a3_prediction.model'
 
-
 loaded_model = pickle.load(open(filename, 'rb'))
 model = loaded_model
 scaler = loaded_model['scaler']
