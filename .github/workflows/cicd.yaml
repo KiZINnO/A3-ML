@@ -49,51 +49,51 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Set up SSH keys and config
-        run: |
-          mkdir -p ~/.ssh
-          # Write the bazooka key
-          echo "${{ secrets.BAZOOKA_SSH_KEY }}" > ~/.ssh/bazooka_key
-          # Write the mlbrain key
-          echo "${{ secrets.MLBRAIN_SSH_KEY }}" > ~/.ssh/mlbrain_key
-          chmod 600 ~/.ssh/bazooka_key ~/.ssh/mlbrain_key
+      # - name: Set up SSH keys and config
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     # Write the bazooka key
+      #     echo "${{ secrets.BAZOOKA_SSH_KEY }}" > ~/.ssh/bazooka_key
+      #     # Write the mlbrain key
+      #     echo "${{ secrets.MLBRAIN_SSH_KEY }}" > ~/.ssh/mlbrain_key
+      #     chmod 600 ~/.ssh/bazooka_key ~/.ssh/mlbrain_key
 
-          # Create SSH config with both bazooka and mlbrain settings.
-          echo "Host bazooka
-          HostName ${{ secrets.BAZOOKA_HOST }}
-          Port ${{ secrets.BAZOOKA_PORT }}
-          User ${{ secrets.BAZOOKA_USER }}
-          IdentityFile ~/.ssh/bazooka_key
-          # IdentityOnly yes" > ~/.ssh/config
+      #     # Create SSH config with both bazooka and mlbrain settings.
+      #     echo "Host bazooka
+      #     HostName ${{ secrets.BAZOOKA_HOST }}
+      #     Port ${{ secrets.BAZOOKA_PORT }}
+      #     User ${{ secrets.BAZOOKA_USER }}
+      #     IdentityFile ~/.ssh/bazooka_key
+      #     # IdentityOnly yes" > ~/.ssh/config
 
-          echo "Host mlbrain
-          HostName ${{ secrets.MLBRAIN_HOST }}
-          User ${{ secrets.MLBRAIN_USER }}
-          IdentityFile ~/.ssh/mlbrain_key
-          ProxyJump bazooka" >> ~/.ssh/config
+      #     echo "Host mlbrain
+      #     HostName ${{ secrets.MLBRAIN_HOST }}
+      #     User ${{ secrets.MLBRAIN_USER }}
+      #     IdentityFile ~/.ssh/mlbrain_key
+      #     ProxyJump bazooka" >> ~/.ssh/config
 
-          chmod 600 ~/.ssh/config
+      #     chmod 600 ~/.ssh/config
 
-      - name: Deploy to Server via SSH
-        run: |
-          # Using the SSH config, 'mlbrain' will route via bazooka automatically.
-          ssh mlbrain -p ${{ secrets.MLBRAIN_PORT }} "docker-compose -f docker-compose-prod.yaml pull && docker-compose -f docker-compose-prod.yaml up -d"
-
-
+      # - name: Deploy to Server via SSH
+      #   run: |
+      #     # Using the SSH config, 'mlbrain' will route via bazooka automatically.
+      #     ssh mlbrain -p ${{ secrets.MLBRAIN_PORT }} "docker-compose -f docker-compose-prod.yaml pull && docker-compose -f docker-compose-prod.yaml up -d"
 
 
 
-      # - name: SSH Remote Commands
-      #   uses: appleboy/ssh-action@v1.1.0
-      #   with:
-      #     host: ${{vars.HOST}}
-      #     username: ${{ secrets.USERNAME}}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     proxy_host: ${{vars.PROXY_HOST}}
-      #     proxy_username: ${{ secrets.USERNAME }}
-      #     proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       docker pull inisha5563/car_price_prediction:a3
-      #       docker compose -f st125563/docker-compose.yml down --remove-orphans
-      #       docker compose -f st125563/docker-compose.yml up -d
-      #     debug: true
+
+
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.MLBRAIN_HOST}}
+          username: ${{ secrets.MLBRAIN_USERNAME}}
+          key: ${{ secrets.MLBRAIN_SSH_KEY }}
+          proxy_host: ${{secrets.BAZOOKA_HOST}}
+          proxy_username: ${{ secrets.BAZOOKA_USERNAME }}
+          proxy_key: ${{ secrets.BAZOOKA_SSH__KEY }}
+          script: |
+            docker pull kpzik/a3_price_prediction
+            docker compose -f docker-compose-prod.yaml down --remove-orphans
+            docker compose -f docker-compose-prod.yaml up -d
+          debug: true
