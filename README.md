@@ -19,5 +19,5 @@
  - Otherwise, you can directly go to https://st124090.ml.brain.cs.ait.ac.th
 
 ## Note
- - The model used for prediction is directly used from https://mlflow.ml.brain.cs.ait.ac.th
+ - The model used for prediction is directly infered from https://mlflow.ml.brain.cs.ait.ac.th
 
